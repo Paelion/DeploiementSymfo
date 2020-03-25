@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShopController extends AbstractController
 {
     /**
-     * @Route("/", name="")
+     * @Route("/", name="home")
      */
     public function index(Request $request)
     {
