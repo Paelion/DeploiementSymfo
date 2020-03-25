@@ -72,7 +72,7 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
         echo "</a>
                 </li>
                 <li class=\"nav-item active\">
-                   <a class=\"nav-link\" href=\"";
+                    <a class=\"nav-link\" href=\"";
         // line 21
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produits");
         echo "\">";
@@ -87,12 +87,12 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
     ";
         // line 28
         $this->displayBlock('body', $context, $blocks);
-        // line 29
+        // line 31
         echo "</main>
 ";
-        // line 30
+        // line 32
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 31
+        // line 33
         echo "</body>
 </html>
 ";
@@ -133,12 +133,15 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
+        // line 29
+        echo "Test
+    ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
     }
 
-    // line 30
+    // line 32
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -162,7 +165,7 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
 
     public function getDebugInfo()
     {
-        return array (  142 => 30,  130 => 28,  118 => 7,  105 => 5,  96 => 31,  94 => 30,  91 => 29,  89 => 28,  77 => 21,  69 => 18,  57 => 8,  55 => 7,  50 => 5,  44 => 1,);
+        return array (  145 => 32,  137 => 29,  130 => 28,  118 => 7,  105 => 5,  96 => 33,  94 => 32,  91 => 31,  89 => 28,  77 => 21,  69 => 18,  57 => 8,  55 => 7,  50 => 5,  44 => 1,);
     }
 
     public function getSourceContext()
@@ -187,18 +190,20 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
                     <a class=\"nav-link\" href=\"{{path('home')}}\">{{ \"Panier\"| trans }}</a>
                 </li>
                 <li class=\"nav-item active\">
-                   <a class=\"nav-link\" href=\"{{path('produits')}}\">{{ \"Produit\"| trans }}</a>
+                    <a class=\"nav-link\" href=\"{{path('produits')}}\">{{ \"Produit\"| trans }}</a>
                 </li>
             </ul>
         </div>
     </nav>
 </header>
 <main>
-    {% block body %}{% endblock %}
+    {% block body %}
+Test
+    {% endblock %}
 </main>
 {% block javascripts %}{% endblock %}
 </body>
 </html>
-", "base.html.twig", "/Users/pa/shopSymfony/templates/base.html.twig");
+", "base.html.twig", "/Users/pa/Documents/GitHub/DeploiementSymfo/templates/base.html.twig");
     }
 }
