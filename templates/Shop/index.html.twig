@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+
+                <h2>{{ "Panier" | trans }}</h2>
+                <br>
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">{{ "Produit" | trans }}</th>
+                        <th scope="col">{{ "Quantité" | trans }}</th>
+                        {#<th scope="col">{{ "Montant" | trans }}</th>#}
+                        <th scope="col">{{ "Suprimer" | trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {% for produit in produits %}
+                    <tr {{ produit.id }}>
+                        {% if produit.produitId is not null %}
+                            <td>{{ produit.produitId.nom }} </td>
+                            <td>{{ produit.quantite }} </td>
+                           {#<td>{{ somme }}</td>#}
+                            <td><a href="{{ path("removePanier", {id: produit.id}) }}">
+                                    <button class="btn btn-danger">{{ "Supprimer ce produit"| trans }}</button>
+                                </a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr> <td colspan="6">{{ "Vous avez"| trans }} {{ produits | length}}  {{ "articles différents dans votre panier"| trans }} .</td></tr>
+                    <tr> <td colspan="6">{{ "La quantité des articles dans votre panier est de"| trans }} : {{quantite}}  {{ "article(s)"| trans }}.</td></tr>
+                    </tfoot>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

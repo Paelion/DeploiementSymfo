@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+
+                <h2>{{ produits.nom }}</h2>
+                <br>
+                {{ "Prix" | trans }} : {{ produits.prix }} €
+                <br>
+                {{ "Quantité" | trans }} : {{ produits.quantite }}
+                <br>
+                <img src="{{ asset('upload/images/' ~ produits.photo)}}" class="card-img-top" alt="{{produits.nom}}">
+                <br>
+                <br>
+                <div>
+                    <p style="font-size: 22px;">{{ "Ajouter au panier"| trans }}</p>
+                    {{ form_start(formPanier) }}
+                    {{ form_rest(formPanier) }}
+                    <select name="produitId">
+                        {% for list in lists %}
+                            <option value="{{ list.id }}">{{ list.nom}} </option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-primary">{{ "Choisir"| trans }}</button>
+                    {{ form_end(formPanier) }}
+                </div>
+                <br>
+                <br>
+                <a href="{{path("removeShop", {id: produits.id})}}"><button class="btn btn-danger">{{ "Supprimer ce produit"| trans }}</button></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
