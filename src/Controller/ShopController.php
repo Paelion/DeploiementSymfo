@@ -20,37 +20,35 @@ class ShopController extends AbstractController
      */
     public function index(Request $request)
     {
-    echo "Bonjour";
+        echo "Bonjour";
 
-   /* //ici    $panier = $this->getDoctrine()
-            ->getRepository(panier::class)
-            ->findAll();
+        /* //ici    $panier = $this->getDoctrine()
+                 ->getRepository(panier::class)
+                 ->findAll();
 
-        $produits = $this->getDoctrine()
-            ->getRepository(produit::class)
-            ->findAll();
-
-
-        $quantite = 0;
-        if (!empty($panier)) {
-            $total = 0;
-
-            foreach ($panier as $produit) {
-                $total += ($produit->getQuantite());
-            }
-            $quantite = $total;
-        }
-
-        /*$somme = 0;
-        if (!empty($panier)) {
-            $totalPrice = 0;
-            foreach ($produits as $panier) {
-                $totalPrice += ($produits->getPrix() * $panier->getQuantite());
-            }
-            $somme = $totalPrice;
-        }*/
+             $produits = $this->getDoctrine()
+                 ->getRepository(produit::class)
+                 ->findAll();
 
 
+             $quantite = 0;
+             if (!empty($panier)) {
+                 $total = 0;
+
+                 foreach ($panier as $produit) {
+                     $total += ($produit->getQuantite());
+                 }
+                 $quantite = $total;
+             }
+
+             /*$somme = 0;
+             if (!empty($panier)) {
+                 $totalPrice = 0;
+                 foreach ($produits as $panier) {
+                     $totalPrice += ($produits->getPrix() * $panier->getQuantite());
+                 }
+                 $somme = $totalPrice;
+             }*/
 
 
         return $this->render('base.html.twig', [
@@ -62,7 +60,7 @@ class ShopController extends AbstractController
 
 
     }
-
+}
     /* //ici    /**
      * @Route("/produits", name="produits")
      */
