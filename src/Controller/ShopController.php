@@ -46,7 +46,7 @@ class ShopController extends AbstractController
         }
 
 
-        return $this->render('base.html.twig', [
+        return $this->render('Shop/index.html.twig', [
             'produits' => $panier,
             'quantite' => $quantite,
 

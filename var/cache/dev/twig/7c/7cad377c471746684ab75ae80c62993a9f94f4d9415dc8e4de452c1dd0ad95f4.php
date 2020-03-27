@@ -56,16 +56,43 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
         // line 8
         echo "</head>
 <body>
-
+<header>
+    <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
+        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+            <span class=\"navbar-toggler-icon\"></span>
+        </button>
+        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
+            <ul class=\"navbar-nav\">
+                <li class=\"nav-item active\">
+                    <a class=\"nav-link\" href=\"";
+        // line 18
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
+        echo "\">";
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("Panier"), "html", null, true);
+        echo "</a>
+                </li>
+                <li class=\"nav-item active\">
+                    <a class=\"nav-link\" href=\"";
+        // line 21
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("produits");
+        echo "\">";
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("Produit"), "html", null, true);
+        echo "</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
     ";
-        // line 11
+        // line 28
         $this->displayBlock('body', $context, $blocks);
-        // line 14
+        // line 29
         echo "</main>
 ";
-        // line 15
+        // line 30
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 16
+        // line 31
         echo "</body>
 </html>
 ";
@@ -99,22 +126,19 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
 
     }
 
-    // line 11
+    // line 28
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 12
-        echo "
-    ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
     }
 
-    // line 15
+    // line 30
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -131,9 +155,14 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  118 => 15,  110 => 12,  103 => 11,  91 => 7,  78 => 5,  69 => 16,  67 => 15,  64 => 14,  62 => 11,  57 => 8,  55 => 7,  50 => 5,  44 => 1,);
+        return array (  142 => 30,  130 => 28,  118 => 7,  105 => 5,  96 => 31,  94 => 30,  91 => 29,  89 => 28,  77 => 21,  69 => 18,  57 => 8,  55 => 7,  50 => 5,  44 => 1,);
     }
 
     public function getSourceContext()
@@ -147,10 +176,25 @@ class __TwigTemplate_0872511c493d7b53f46f2ee75eba202f0a7d7a2dbef26cfcf8c79b37cb2
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-
-    {% block body %}
-
-    {% endblock %}
+<header>
+    <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
+        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+            <span class=\"navbar-toggler-icon\"></span>
+        </button>
+        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
+            <ul class=\"navbar-nav\">
+                <li class=\"nav-item active\">
+                    <a class=\"nav-link\" href=\"{{path('home')}}\">{{ \"Panier\"| trans }}</a>
+                </li>
+                <li class=\"nav-item active\">
+                    <a class=\"nav-link\" href=\"{{path('produits')}}\">{{ \"Produit\"| trans }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+    {% block body %}{% endblock %}
 </main>
 {% block javascripts %}{% endblock %}
 </body>
