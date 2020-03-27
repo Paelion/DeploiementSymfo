@@ -66,12 +66,14 @@ class ShopController extends AbstractController
             $produitRepository = $this->getDoctrine()
                 ->getRepository(Produit::class)
                 ->findAll();
+
+            $form = $this->createForm(ProduitType::class, $produit);
+            $form->handleRequest($request);
         } catch (\Exception $e) {
-            return new Response('Erreur BDD');
+            return new Response('Erreur Form ');
         }
 
-        $form = $this->createForm(ProduitType::class, $produit);
-        $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -122,13 +124,15 @@ class ShopController extends AbstractController
             $produitList = $this->getDoctrine()
                 ->getRepository(produit::class)
                 ->findAll();
+            $form = $this->createForm(PanierType::class, $panier);
+            $form->handleRequest($request);
+
         } catch (\Exception $e) {
-            return new Response('Erreur BDD');
+            return new Response('Erreur BDD ou Form panier');
         }
 
 
-        $form = $this->createForm(PanierType::class, $panier);
-        $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 
