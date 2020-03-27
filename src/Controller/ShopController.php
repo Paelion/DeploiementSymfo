@@ -22,44 +22,33 @@ class ShopController extends AbstractController
     public function index(Request $request)
     {
 
-        try{$panier = $this->getDoctrine()
-            ->getRepository(panier::class)
-            ->findAll();
+        try {
+            $panier = $this->getDoctrine()
+                ->getRepository(panier::class)
+                ->findAll();
 
             $produits = $this->getDoctrine()
                 ->getRepository(produit::class)
                 ->findAll();
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             return new Response('Erreur BDD');
         }
 
 
+        $quantite = 0;
+        if (!empty($panier)) {
+            $total = 0;
 
-             $quantite = 0;
-             if (!empty($panier)) {
-                 $total = 0;
-
-                 foreach ($panier as $produit) {
-                     $total += ($produit->getQuantite());
-                 }
-                 $quantite = $total;
-             }
-
-             /*$somme = 0;
-             if (!empty($panier)) {
-                 $totalPrice = 0;
-                 foreach ($produits as $panier) {
-                     $totalPrice += ($produits->getPrix() * $panier->getQuantite());
-                 }
-                 $somme = $totalPrice;
-             }*/
+            foreach ($panier as $produit) {
+                $total += ($produit->getQuantite());
+            }
+            $quantite = $total;
+        }
 
 
         return $this->render('base.html.twig', [
             'produits' => $panier,
             'quantite' => $quantite,
-            //'somme' => $somme,
 
         ]);
 
@@ -70,60 +59,72 @@ class ShopController extends AbstractController
      * @Route("/produits", name="produits")
      */
     public function produits(Request $request, EntityManagerInterface $entityManager)
-   {
-       $produit = new Produit();
+    {
+        $produit = new Produit();
 
-       $produitRepository = $this->getDoctrine()
-           ->getRepository(Produit::class)
-           ->findAll();
-
-
-       $form = $this->createForm(ProduitType::class, $produit);
-       $form->handleRequest($request);
-
-       if ($form->isSubmitted() && $form->isValid()) {
-
-           $produit = $form->getData();
+        try {
+            $produitRepository = $this->getDoctrine()
+                ->getRepository(Produit::class)
+                ->findAll();
+        } catch (\Exception $e) {
+            return new Response('Erreur BDD');
+        }
 
 
-           $photo = $produit->getPhoto();
-           $photoName = md5(uniqid()) . '.' . $photo->guessExtension();
-           $photo->move($this->getParameter('upload_files'),
-               $photoName);
-           $produit->setPhoto($photoName);
+        $form = $this->createForm(ProduitType::class, $produit);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $produit = $form->getData();
 
 
-           $entityManager->persist($produit);
-           $entityManager->flush();
-       }
+            $photo = $produit->getPhoto();
+            $photoName = md5(uniqid()) . '.' . $photo->guessExtension();
+            $photo->move($this->getParameter('upload_files'),
+                $photoName);
+            $produit->setPhoto($photoName);
 
 
-       return $this->render('Shop/produits.html.twig', [
-           'produits' => $produitRepository,
-           'formProduit' => $form->createView()
-       ]);
+            $entityManager->persist($produit);
+            $entityManager->flush();
+        }
 
-   }
 
-   /**
-    * @Route("/Shop/produitSingle/{{id}}", name="produitSingle")
-    */
+        return $this->render('Shop/produits.html.twig', [
+            'produits' => $produitRepository,
+            'formProduit' => $form->createView()
+        ]);
+
+    }
+
+    /**
+     * @Route("/Shop/produitSingle/{{id}}", name="produitSingle")
+     */
     public function produitSingle($id, Request $request, EntityManagerInterface $entityManager)
     {
-
-        $produitRepository = $this->getDoctrine()
-            ->getRepository(Produit::class)
-            ->find($id);
+        try {
+            $produitRepository = $this->getDoctrine()
+                ->getRepository(Produit::class)
+                ->find($id);
+        } catch (\Exception $e) {
+            return new Response('Erreur BDD');
+        }
 
         $panier = new panier();
+        try {
+            $panierRepository = $this->getDoctrine()
+                ->getRepository(panier::class)
+                ->findAll();
 
-        $panierRepository = $this->getDoctrine()
-            ->getRepository(panier::class)
-            ->findAll();
+            $produitList = $this->getDoctrine()
+                ->getRepository(produit::class)
+                ->findAll();
+        }
+        catch (\Exception $e) {
+            return new Response('Erreur BDD');
+        }
 
-        $produitList = $this->getDoctrine()
-            ->getRepository(produit::class)
-            ->findAll();
 
 
         $form = $this->createForm(PanierType::class, $panier);
@@ -170,7 +171,7 @@ class ShopController extends AbstractController
     /**
      * @Route("/Shop/removePanier/{id}", name="removePanier")
      */
-   public function removePanier($id, EntityManagerInterface $entityManager)
+    public function removePanier($id, EntityManagerInterface $entityManager)
     {
         $produit = $this->getDoctrine()->getRepository(panier::class)->find($id);
 
