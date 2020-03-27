@@ -51,8 +51,8 @@ class ShopController extends AbstractController
 
 
         return $this->render('base.html.twig', [
-            //'produits' => $panier,
-            //'quantite' => $quantite,
+            'produits' => $panier,
+            'quantite' => $quantite,
             //'somme' => $somme,
 
         ]);
