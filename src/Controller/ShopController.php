@@ -20,9 +20,8 @@ class ShopController extends AbstractController
      */
     public function index(Request $request)
     {
-        echo "Bonjour";
 
-        /* //ici    $panier = $this->getDoctrine()
+       $panier = $this->getDoctrine()
                  ->getRepository(panier::class)
                  ->findAll();
 
@@ -60,11 +59,11 @@ class ShopController extends AbstractController
 
 
     }
-}
-    /* //ici    /**
+
+    /**
      * @Route("/produits", name="produits")
      */
-    /* //ici   public function produits(Request $request, EntityManagerInterface $entityManager)
+    public function produits(Request $request, EntityManagerInterface $entityManager)
    {
        $produit = new Produit();
 
@@ -103,7 +102,7 @@ class ShopController extends AbstractController
    /**
     * @Route("/Shop/produitSingle/{{id}}", name="produitSingle")
     */
-    /* //ici    public function produitSingle($id, Request $request, EntityManagerInterface $entityManager)
+    public function produitSingle($id, Request $request, EntityManagerInterface $entityManager)
     {
 
         $produitRepository = $this->getDoctrine()
@@ -152,7 +151,7 @@ class ShopController extends AbstractController
     /**
      * @Route("/Shop/removeShop/{id}", name="removeShop")
      */
-    /* //ici    public function removeShop($id, EntityManagerInterface $entityManager)
+    public function removeShop($id, EntityManagerInterface $entityManager)
     {
         $produit = $this->getDoctrine()->getRepository(Produit::class)->find($id);
 
@@ -165,7 +164,7 @@ class ShopController extends AbstractController
     /**
      * @Route("/Shop/removePanier/{id}", name="removePanier")
      */
-   /* //ici     public function removePanier($id, EntityManagerInterface $entityManager)
+   public function removePanier($id, EntityManagerInterface $entityManager)
     {
         $produit = $this->getDoctrine()->getRepository(panier::class)->find($id);
 
