@@ -135,11 +135,14 @@ class ShopController extends AbstractController
             $panier = $form->getData()
                 ->setDateAjout(new \DateTime);
 
-            $produits = $this->getDoctrine()
-                ->getRepository(produit::class)
-                ->find($request->request->get('produitId'));
-            $panier->setProduitId($produits);
-
+            try {
+                $produits = $this->getDoctrine()
+                    ->getRepository(produit::class)
+                    ->find($request->request->get('produitId'));
+                $panier->setProduitId($produits);
+            } catch (\Exception $e) {
+                return new Response('Erreur BDD');
+            }
             $entityManager->persist($panier);
             $entityManager->flush();
         }
