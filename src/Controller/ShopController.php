@@ -10,6 +10,7 @@ use PhpParser\Node\Scalar\MagicConst\File;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -21,13 +22,18 @@ class ShopController extends AbstractController
     public function index(Request $request)
     {
 
-       $panier = $this->getDoctrine()
-                 ->getRepository(panier::class)
-                 ->findAll();
+        try{$panier = $this->getDoctrine()
+            ->getRepository(panier::class)
+            ->findAll();
 
-             $produits = $this->getDoctrine()
-                 ->getRepository(produit::class)
-                 ->findAll();
+            $produits = $this->getDoctrine()
+                ->getRepository(produit::class)
+                ->findAll();
+        }
+        catch (\Exception $e){
+            return new Response('Erreur BDD');
+        }
+
 
 
              $quantite = 0;
