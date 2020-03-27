@@ -35,10 +35,6 @@ class panier
      */
     private $date_ajout;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $etat;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\produit", inversedBy="paniers")
@@ -87,18 +83,6 @@ class panier
     public function setDateAjout(\DateTimeInterface $date_ajout): self
     {
         $this->date_ajout = $date_ajout;
-
-        return $this;
-    }
-
-    public function getEtat(): ?bool
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(bool $etat): self
-    {
-        $this->etat = $etat;
 
         return $this;
     }
